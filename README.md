@@ -1,2 +1,2 @@
 # ILRL
-Reminds you to always do good things and start romanticizing life &lt;3
+May you enjoy playing our game <3 &lt;3
