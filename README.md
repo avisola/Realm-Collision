@@ -1,7 +1,7 @@
 <h1 align = "center">⋆⭒˚.⋆☾.𖥔 ݁ ˖REALM COLLISION 𓂃 ࣪˖ ִֶָ★˖</h1>
 <h3 align = "center">⋆༺𓆩Turn-Based ⋆༺𓆩🗡𓆪༻⋆ PVP Game.𓆪༻⋆</h3>
 <p align = "center">
-<b>CS 2102  </b> <br/>
+<b>CS-2102  </b> <br/>
 
 
 Andal, Juan Miguel P. <br/>
@@ -27,7 +27,13 @@ The entire Cosmos was built using core Object-Oriented Programming (OOP) princip
 𓆩✧𓆪 - Engage yourself to the stories behind each characters<br/>
 
 ### ⚖️Choose your Acquaintant⚖️:
-{ADD CHARACTERS AND SMALL DESCRIPTION📌}
+⚪ ArcMage <br>
+⚪ Deadeye <br>
+⚪ Knight <br>
+⚪ Terminator <br>
+⚪ Trickster <br>
+⚪ Wanderer <br>
+
 
 
 ### ⚔️Battle Mechanics⚔️:
@@ -110,11 +116,13 @@ Main Menu:
 <center><img src="./static/MainMenu.png" width="700"></center>
 <br>
 Acquiantant Selector:
-<br>
+<br> </br>
 <center><img src="./static/CharacterSelection.png" width="700"></center>
-<br>
+<br> </br>
 The Battlefield:
+<br></br>
 <center><img src="./static/CombatScreen.png" width="700"></center>
+</br>
 
 
 ##  <h2 align = "center"> ♔♕♗♘♖♙ Contributors ♙♖♘♗♕♔ </h2> 
@@ -151,4 +159,6 @@ The Battlefield:
 </table>
 
 ## 🌸 Acknowledgment 🌸
-{INSERT ACKNOWLEDGMENT 📌}
+We extend our heartfelt gratitude to our mentor and course instructor, Ma’am <a href="https://github.com/marieemoiselle" target="_blank">Fatima Marie P. Agdon</a>, whose guidance has been nothing short of enchanting. Her patience and wisdom helped us navigate the challenges of object-oriented programming, turning confusion into clarity and allowing us to grow as aspiring developers. For her support and dedication, we are truly thankful. ❀
+
+
