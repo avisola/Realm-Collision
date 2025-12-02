@@ -93,20 +93,180 @@ Run the program using:
 ### 🪄 Encapsulation
 Each character class encapsulates its own data (`health`, `energy`, `action points`) Private fields with public getters/setters Internal state management within each class BattleLog connection through dependency injection
 
+Example:
+```java
+// Encapsulation
+// Character.java 
+
+public abstract class Character {
+    // Private fields - data is hidden
+    private int health;
+    private int energy;
+    private int actionPoints;
+    
+    // Public getters/setters - controlled access
+    public int getHealth() { return this.health; }
+    public void setHealth(int health) { 
+        if (health >= 0) this.health = health; 
+    }
+    
+    public int getEnergy() { return this.energy; }
+    public void setEnergy(int energy) {
+        this.energy = Math.min(energy, CharacterStats.getMaxEnergy(this.getClass().getSimpleName()));
+    }
+}
+
+
+```
+
 ### 🌀 Abstraction
 `Character.java` is an abstract base class defining the interface Abstract methods: `attack()`, `defense()`, `castSkill()`, `castUltimate()`. </br> 
 Concrete implementations define specific behaviors
 UI panels abstract visual representation from game logic
+
+Example:
+```java
+//Abstract
+// Character.java 
+
+public abstract class Character {
+    // Abstract methods - define WHAT to do, not HOW
+    public abstract int attack();
+    public abstract void defense();
+    public abstract int castSkill();
+    public abstract int castUltimate(Character target);
+    
+    // Concrete method - shared implementation
+    public boolean isDefeated() {
+        return this.health <= 0;
+    }
+}
+
+// ArcMage.java - Concrete Implementation
+public class ArcMage extends Character {
+    @Override
+    public int attack() {
+        // Implementation details hidden
+        this.setRegenActionPoints(true);
+        return 1000; // Base damage
+    }
+}
+
+
+```
 
 
 ### 🩸 Inheritance
 All character classes extend `Character.java` Method overriding for specialized behaviors `Clone.java` extends `Wanderer.java` for shared functionality.
 Common utility methods inherited across all characters
 
+Example:
+```java
+//inheritance
+// Parent class
+
+public abstract class Character {
+    protected BattleLog battleLog;
+    
+    public void setBattleLog(BattleLog battleLog) {
+        this.battleLog = battleLog;
+    }
+    
+    public void addBattleLogMessage(String message) {
+        if (this.battleLog != null) {
+            this.battleLog.addMessage(message);
+        }
+    }
+}
+
+// Child class inherits logging capability
+public class Deadeye extends Character {
+    @Override
+    public int castUltimate(Character target) {
+        // Uses inherited method
+        this.addBattleLogMessage("Deadeye cast his ultimate");
+        this.addBattleLogMessage("BULLET OF FATE!");
+        return 10000;
+    }
+}
+
+
+```
+
 ### 🎲 Polymorphism
 `GameController` treats all characters as Character type Dynamic method dispatch for character-specific actions, 
 `castUltimate()` behaves differently per character,
 `takeDamage()` has special handling for Wanderer with clones.
+
+Example:
+```java
+//Polymorphism
+// GameController.java - Treating all characters uniformly
+public class GameController {
+    private Character player1, player2;
+    
+    public void handleAction(String action) {
+        Character currentPlayer = (currentTurn == 1) ? player1 : player2;
+        
+        // Polymorphic method calls - same method, different behavior
+        int damage = 0;
+        switch (action) {
+            case "ATTACK":
+                damage = currentPlayer.attack(); // Calls specific implementation
+                break;
+            case "SKILL":
+                damage = currentPlayer.castSkill(); // Different per character
+                break;
+        }
+    }
+}
+
+// Different behaviors through overriding
+public class Trickster extends Character {
+    @Override
+    public int castSkill() {
+        this.addBattleLogMessage("Trickster gains an attack stack!");
+        this.attackStacks++; // Trickster-specific behavior
+        return 0;
+    }
+}
+
+public class Valkyrie extends Character {
+    @Override
+    public int castSkill() {
+        this.addBattleLogMessage("Valkyrie heals 4000 HP!");
+        this.health += 4000; // Valkyrie-specific behavior
+        return 0;
+    }
+}
+
+
+//Composition
+// Wanderer HAS Clones (Composition)
+public class Wanderer extends Character {
+    private Clone[] clones; // Composition - Wanderer "has" clones
+    
+    public Wanderer(int health, int energy, int actionPoints) {
+        super(health, energy, actionPoints);
+        this.clones = new Clone[2]; // Creates clones as part of itself
+    }
+    
+    public Object takeDamageWithClones(int damage, Character attacker, 
+                                       boolean isSkill, boolean isUltimate) {
+        // Damage goes to clones first
+        for (Clone c : clones) {
+            if (c != null && c.isAlive()) {
+                c.takeDamage(damage, this, false, false);
+                return damage;
+            }
+        }
+        // Then to wanderer
+        return super.takeDamage(damage, attacker, isSkill, isUltimate);
+    }
+}
+
+
+```
 
 
 ## <h2 align = "center"> :･ﾟ✧:･.☽˚｡･ﾟ✧:･.: Sample Output :･ﾟ✧:･.☽˚｡･ﾟ✧:･.: </h2>
