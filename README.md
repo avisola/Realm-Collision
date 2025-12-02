@@ -234,9 +234,9 @@ public class Valkyrie extends Character {
 }
 ```
 
-### ➕ ADDITIONAL PRINCIPLES:
+### ➕ Additional Principles:
 
-#### 📓 COMPOSITION:
+#### 📓 Composition:
 `Wanderer` composes `Clone` objects `GameController` composes `characters` and `UI panels`, <br>
 `CharacterPanel` composes custom health/energy bars `BattleLog` composes styled text attributes
 ``` java
@@ -319,6 +319,7 @@ The Battlefield:
 
 ## 🌸 Acknowledgment 🌸
 We extend our heartfelt gratitude to our mentor and course instructor, Ma’am <a href="https://github.com/marieemoiselle" target="_blank">Fatima Marie P. Agdon</a>, whose guidance has been nothing short of enchanting. Her patience and wisdom helped us navigate the challenges of object-oriented programming, turning confusion into clarity and allowing us to grow as aspiring developers. For her support and dedication, we are truly thankful. ❀
+
 
 
 
